@@ -4,25 +4,19 @@ import ProductList from '../components/ProductList';
 import axios from 'axios';
 
 const Main = () => {
-    const [ products, setProducts ] = useState([]);
-    const [ loaded, setLoaded ] = useState(false);
-
-    useEffect(() => {
-        axios.get("http://localhost:8000/api/products")
-            .then(res => {
-                setProducts(res.data)
-                setLoaded(true)
-            })
-    }, [])
+    
 
     return (
         <>
             
             <ProductForm />
             <hr/>
-            {
-                loaded && <ProductList products={products} />
-            }
+            <ProductList />
+            {/* {
+                loaded ?
+                <ProductList products={products} /> :
+                <p>Loading...</p>
+            } */}
         </>
     )
 }
