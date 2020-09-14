@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from '@reach/router';
 
 const ProductList = (props) => {
     const { products } = props;
@@ -6,7 +7,7 @@ const ProductList = (props) => {
         <div>
             {
                 products.map((product, idx) => {
-                    return <p key={idx}>{product.title}</p>
+                    return <Link to={`/products/${product._id}`} key={idx}><p>{product.title}</p></Link>
                 })
             }
         </div>
