@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import axios from 'axios';
+import DeleteButton from '../components/DeleteButton';
 
 const ProductList = () => {
   const [ products, setProducts ] = useState([]);
@@ -12,12 +13,6 @@ const ProductList = () => {
             })
             .catch(err => console.log(err))
     },[products])
-
-    const handleDelete = idx => {
-        axios.delete(`http://localhost:8000/api/products/${products[idx]._id}`)
-            .then(res => console.log("Deleted: ", res))
-            .catch(err => console.log(err))
-    }
 
   return (
     <>
@@ -39,7 +34,7 @@ const ProductList = () => {
                         <td>{product.description}</td>
                         <td>
                             <Link to={`/${product._id}/edit`}>Edit</Link> | 
-                            <button onClick={() => handleDelete(idx)}>Delete</button>
+                            <DeleteButton productId={product._id} success={() => navigate("/")} />
                         </td>
                     </tr>
                 )
