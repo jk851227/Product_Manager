@@ -6,6 +6,6 @@ module.exports = app => {
     // READ
     app.get("/api/products", ProductController.allProducts);
     app.get("/api/products/:id", ProductController.productDetail);
-    // PATCH
-    // app.patch("/api/products/:id", ProductController.updateProduct);
+    // UPDATE
+    app.patch("/api/products/:id", ProductController.updateProduct);
 }
