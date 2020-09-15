@@ -14,7 +14,7 @@ const ProductDetail = (props) => {
                 setLoading(false)
             })
             .catch(err => console.log("Error: ", err));
-    }, [])
+    }, [id])
 
     return (
         <div>

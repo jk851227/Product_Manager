@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { navigate } from '@reach/router';
+import { navigate, Link } from '@reach/router';
 
 const ProductUpdate = (props) => {
     const { id } = props;
@@ -10,7 +10,7 @@ const ProductUpdate = (props) => {
         axios.get(`http://localhost:8000/api/products/${id}`)
             .then(res => setProduct(res.data))
             .catch(err => console.log(err));
-    }, [])
+    }, [id])
 
     const handleChange = e => {
         setProduct({
@@ -30,6 +30,7 @@ const ProductUpdate = (props) => {
 
     return (
         <div>
+            <Link to="/">Home</Link>
             <h1>Update Product</h1>
             <form onSubmit={ handleSubmit }>
                 <div>

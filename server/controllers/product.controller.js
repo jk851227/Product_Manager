@@ -20,5 +20,10 @@ module.exports = {
         Product.findOneAndUpdate({_id: req.params.id}, req.body, {new: true})
             .then(data => res.json(data))
             .catch(err => res.json(err))
+    },
+    deleteProduct: (req, res) => {
+        Product.findOneAndDelete({_id: req.params.id})
+            .then(data => res.json(data))
+            .catch(err => res.json(err))
     }
 }

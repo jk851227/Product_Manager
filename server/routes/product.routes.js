@@ -8,4 +8,6 @@ module.exports = app => {
     app.get("/api/products/:id", ProductController.productDetail);
     // UPDATE
     app.patch("/api/products/:id", ProductController.updateProduct);
+    // DELETE
+    app.delete("/api/products/:id", ProductController.deleteProduct);
 }
