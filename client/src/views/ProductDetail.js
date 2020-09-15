@@ -5,13 +5,13 @@ import { Link } from '@reach/router';
 const ProductDetail = (props) => {
     const { id } = props;
     const [ product, setProduct ] = useState({});
-    const [ loading, setLoading ] = useState(true);
+    const [ loaded, setLoaded ] = useState(false);
 
     useEffect (() => {
         axios.get(`http://localhost:8000/api/products/${id}`)
             .then(res => {
                 setProduct(res.data);
-                setLoading(false)
+                setLoaded(true)
             })
             .catch(err => console.log("Error: ", err));
     }, [id])
@@ -20,7 +20,7 @@ const ProductDetail = (props) => {
         <div>
             <Link to="/">Home</Link>
             {
-                loading ?
+                loaded ?
                 <p>Loading...</p> :
                 <div>
                     <h1>{product.title}</h1>

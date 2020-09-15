@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
-const ProductForm = () => {
-  const [product, setProduct] = useState({
-    title: '',
-    price: 0,
-    description: '',
-  });
+const ProductForm = (props) => {
+  const { submitProp, titleProp, priceProp, descProp } = props;
+  const [ product, setProduct ] = useState({
+    title: titleProp,
+    price: priceProp,
+    description: descProp
+  })
 
   const handleChange = e => {
       setProduct({
@@ -15,21 +16,20 @@ const ProductForm = () => {
       })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    axios.post('http://localhost:8000/api/products/new', product)
-        .then(res => console.log("Response: ", res))
-        .catch(err => console.log("Error: ", err));
-  };
+    submitProp(product);
+  }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit }>
         <div>
           <label htmlFor='title'>Title:</label>
           <input
             type='text'
             name='title'
+            value={ product.title }
             onChange={ handleChange }
           />
         </div>
@@ -38,6 +38,7 @@ const ProductForm = () => {
           <input
             type='number'
             name='price'
+            value={ product.price }
             onChange={ handleChange }
           />
         </div>
@@ -46,6 +47,7 @@ const ProductForm = () => {
           <input
             type='text'
             name='description'
+            value={ product.description }
             onChange={ handleChange }
           />
         </div>
